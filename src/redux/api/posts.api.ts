@@ -11,9 +11,9 @@ export const postsApi = createApi({
   tagTypes: ['getPosts'],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
-    getPosts: builder.query<Array<IGetPosts>, void>({
-      query: () => ({
-        url: POSTS_URLS.POSTS,
+    getPosts: builder.query<Array<IGetPosts>, string>({
+      query: (search?: string) => ({
+        url: `${POSTS_URLS.POSTS}?search=${search}`,
         method: METHOD_TYPES.GET,
       }),
       providesTags: ['getPosts'],

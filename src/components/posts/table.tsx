@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useLazyGetPostsQuery } from '../../redux/api/posts.api'
 import {
   Button,
   Card,
@@ -9,31 +7,45 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { openViewDialog, setPost } from '../../redux/slices/postState'
+import { RootState } from '../../redux/store'
 
 export const TablePosts: React.FC = () => {
-  const [getPosts, { data: posts }] = useLazyGetPostsQuery()
-
-  useEffect(() => {
-    getPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { listPosts } = useSelector((store: RootState) => store.postState)
+  const dispatch = useDispatch()
 
   return (
     <>
       <Grid container justifyContent="center" direction="row" spacing={2}>
-        {posts?.map((post) => (
+        {listPosts?.map((post) => (
           <Grid item xs={12} md={5} sm={12}>
             <Card sx={{ minWidth: 275 }}>
-              <CardHeader title={post.title} subheader={post.author} />
+              <CardHeader
+                title={post.title}
+                subheader={`Autor: ${post.author}`}
+              />
               <CardContent>
-                <Typography>{post.content}</Typography>
+                <Typography>
+                  {post.content.length > 70
+                    ? `${post.content.substring(0, 70)}...`
+                    : post.content}
+                </Typography>
                 <br />
                 <Typography variant="body2">
                   {post.createdAt.toString()}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Leer mas</Button>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    dispatch(setPost(post))
+                    dispatch(openViewDialog())
+                  }}
+                >
+                  Leer mas
+                </Button>
               </CardActions>
             </Card>
           </Grid>

@@ -24,32 +24,34 @@ export const AddPost = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<ICreatePost>()
+  } = useForm<ICreatePost>({
+    defaultValues: { title: '', author: '', content: '' },
+  })
 
   const handleCreatePost = (data: ICreatePost) => {
-    createPost(data).unwrap()
-    dispatch(closeDialog())
+    createPost(data)
+      .unwrap()
+      .then(() => {
+        reset({ title: '', author: '', content: '' })
+        dispatch(closeDialog())
+      })
   }
 
   return (
     <div>
-      <Dialog open={openDialog}>
+      <Dialog fullWidth maxWidth="lg" open={openDialog}>
         <DialogTitle>
           <Typography variant="h6" align="center">
             Crear post
           </Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid
-            container
-            justifyContent="center"
-            alignContent="center"
-            direction="column"
-            gap={2}
-          >
-            <Grid item xs={6}>
+          <Grid container justifyContent="center" alignContent="center" gap={3}>
+            <Grid item xs={12}>
               <TextField
+                fullWidth
                 autoFocus
                 placeholder="Titulo"
                 {...register('title', {
@@ -58,11 +60,13 @@ export const AddPost = () => {
                     message: 'El titulo es requerido',
                   },
                 })}
+                helperText={!!errors.title && errors.title.message}
                 error={!!errors.title}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
+                fullWidth
                 placeholder="Autor"
                 {...register('author', {
                   required: {
@@ -70,11 +74,13 @@ export const AddPost = () => {
                     message: 'El autor es requerido',
                   },
                 })}
+                helperText={!!errors.author && errors.author.message}
                 error={!!errors.author}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
+                fullWidth
                 multiline
                 rows={4}
                 placeholder="Contenido"
@@ -84,6 +90,7 @@ export const AddPost = () => {
                     message: 'El contenido es requerido',
                   },
                 })}
+                helperText={!!errors.content && errors.content.message}
                 error={!!errors.content}
               />
             </Grid>
