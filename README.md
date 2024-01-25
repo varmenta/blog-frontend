@@ -7,7 +7,7 @@ Antes de comenzar, asegúrate de tener [Node.js](https://nodejs.org/) y [Yarn](h
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-proyecto.git
+   git clone https://github.com/varmenta/blog-frontend.git
    ```
 
 2. Navega al directorio del proyecto:
