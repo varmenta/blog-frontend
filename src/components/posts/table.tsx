@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { openViewDialog, setPost } from '../../redux/slices/postState'
 import { RootState } from '../../redux/store'
+import moment from 'moment'
 
 export const TablePosts: React.FC = () => {
   const { listPosts } = useSelector((store: RootState) => store.postState)
@@ -33,7 +34,7 @@ export const TablePosts: React.FC = () => {
                 </Typography>
                 <br />
                 <Typography variant="body2">
-                  {post.createdAt.toString()}
+                  Fecha: {moment(post.createdAt).format('D/MM/YYYY')}
                 </Typography>
               </CardContent>
               <CardActions>

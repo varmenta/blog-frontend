@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { closeViewDialog } from '../../redux/slices/postState'
+import moment from 'moment'
 
 export const ViewPost = () => {
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ export const ViewPost = () => {
           <Typography gutterBottom={true}>Autor: {post.author}</Typography>
           <Typography gutterBottom={true}>Contenido: {post.content}</Typography>
           <Typography gutterBottom={true}>
-            Fecha: {post.createdAt.toString()}
+            Fecha: {moment(post.createdAt).format('D/MM/YYYY')}
           </Typography>
         </DialogContent>
         <DialogActions>

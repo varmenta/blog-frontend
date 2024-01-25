@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Antes de comenzar, asegúrate de tener [Node.js](https://nodejs.org/) y [Yarn](https://yarnpkg.com/) instalados en tu máquina.
 
-Currently, two official plugins are available:
+## Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clona este repositorio:
 
-## Expanding the ESLint configuration
+   ```bash
+   git clone https://github.com/tu-usuario/tu-proyecto.git
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Navega al directorio del proyecto:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   cd blog-frontend
+   ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+3. Instala las dependencias con Yarn:
+
+   ```bash
+   yarn
+   ```
+
+4. Crea un archivo .env en la raíz del proyecto.
+5. Copia el contenido del archivo .env.example y pégalo en el archivo .env recién creado.
+
+6. Para iniciar el proyecto, utiliza el siguiente comando:
+
+```bash
+ yarn dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
